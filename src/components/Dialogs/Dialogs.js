@@ -25,11 +25,8 @@ const Dialogs = (props) => {
                 {arrayMessage}
             </div>
 
-
-            <div>
+            <div className={style.form}>
                 <textarea ref={addMessage} name="" id="" cols="30" rows="5"></textarea>
-            </div>
-            <div>
                 <button onClick={alertMessage}>Add Message</button>
             </div>
         </div>
