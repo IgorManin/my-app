@@ -3,10 +3,10 @@ import './App.css';
 import Header from './components/header/header.js';
 import Nav from './components/nav/nav'
 import Content from './components/content/content'
-import Dialogs from "./components/Dialogs/Dialogs";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Setting/Setting";
+import Dialogs from "./components/dialogs/Dialogs";
+import News from "./components/news/News";
+import Music from "./components/music/Music";
+import Settings from "./components/setting/Setting";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 
@@ -17,7 +17,9 @@ const App = (props) => {
             <Nav siteBarFriendsName={props.state.siteBar.bar}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path="/dialogs" element={<Dialogs nameData={props.state.dialogs}/>}/>
+                    <Route path="/dialogs" element={<Dialogs nameData={props.state.dialogs}
+                                                             dispatch={props.dispatch}
+                                                             newDialogsMessage={props.state.dialogs.newDialogsMessage}/>}/>
                     <Route path="/content" element={<Content posts={props.state.content}
                                                              dispatch={props.dispatch}
                                                              newMessageData={props.state.content.newMessageData}/>}/>

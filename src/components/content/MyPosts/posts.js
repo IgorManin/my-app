@@ -1,15 +1,14 @@
 import React from "react";
 import s from './posts.module.css'
 import Post from "./Post/post";
-import {addPostActionCreate, updatePostActionCreate} from '../../../redux/state'
+import {addPostActionCreate, updatePostActionCreate} from '../../../redux/content-reducer'
 
 
 const Posts = (props) => {
-
+    console.log(newPostElement)
     let newPostElement = React.createRef()
 
     let addPost = () => {
-        debugger;
         props.dispatch(addPostActionCreate())
     }
 
@@ -24,9 +23,9 @@ const Posts = (props) => {
             <div className={s.myPosts}>My Posts</div>
             <div>
                 <textarea ref={newPostElement}
+                          onChange={onPostChange}
                           value={props.newMessageData}
-                          onChange={onPostChange} className={s.textForm} name="Мой текст"
-                          id="1" cols="30" rows="5">
+                          className={s.textForm}>
                 </textarea>
             </div>
             <div>

@@ -1,17 +1,8 @@
 import React from 'react';
+import {contentReducer} from './content-reducer'
+import {messageReducer} from "./message-reducer";
+import {siteBarReducer} from "./siteBar-reducer";
 
-
-export let addPostActionCreate = () => {
-    return {
-        type: 'ADD-NEW-POST'
-    }
-}
-
-export let updatePostActionCreate = (newPost) => {
-    return {
-        type: 'UPDATE-POST', newText: newPost
-    }
-}
 
 let store = {
     _state: {
@@ -27,6 +18,7 @@ let store = {
                 {id: 3, name: 'Alexey'},
                 {id: 4, name: 'Dmitriy'},
             ],
+            newDialogsMessage: ''
         },
         content: {
             messageData: [
@@ -56,19 +48,9 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-NEW-POST') {
-            let newPost = {
-                id: 6,
-                message: this._state.content.newMessageData,
-                likesCount: 0
-            }
-            this._state.content.messageData.push(newPost)
-            this._state.content.newMessageData = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-POST') {
-            this._state.content.newMessageData = action.newText
-            this._callSubscriber(this._state)
-        }
+        this._state.content = contentReducer (this._state.content, action)
+        this._state.dialogs = messageReducer (this._state.dialogs, action)
+        this._state.siteBar = siteBarReducer (this._state.siteBar, action)
     },
 
     subscribe(observer) {
