@@ -1,23 +1,24 @@
 import React from "react";
 import s from './posts.module.css'
 import Post from "./Post/post";
-import {addPostActionCreate, updatePostActionCreate} from '../../../redux/content-reducer'
 
 
 const Posts = (props) => {
 
+
+    const messageValue = props.posts.map((el) => <Post message={el.message} likesCount={el.likesCount}/>)
+
     let newPostElement = React.createRef()
 
     let addPost = () => {
-        props.dispatch(addPostActionCreate())
+        props.addPost()
     }
 
     let onPostChange = () => {
         let newPost = newPostElement.current.value;
-        props.dispatch(updatePostActionCreate(newPost))
+        props.updateNewPostText(newPost)
     }
 
-    const messageValue = props.posts.map((el) => <Post message={el.message} likesCount={el.likesCount}/>)
     return (
         <div>
             <div className={s.myPosts}>My Posts</div>
@@ -25,7 +26,8 @@ const Posts = (props) => {
                 <textarea ref={newPostElement}
                           onChange={onPostChange}
                           value={props.newMessageData}
-                          className={s.textForm}>
+                          className={s.textForm}
+                          placeholder={'Enter your message'}>
                 </textarea>
             </div>
             <div>
