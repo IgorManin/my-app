@@ -1,8 +1,7 @@
 import React from 'react';
-import {contentReducer} from './content-reducer'
-import {messageReducer} from "./message-reducer";
-import {siteBarReducer} from "./siteBar-reducer";
-
+import contentReducer from "./content-reducer";
+import messageReducer from "./message-reducer";
+import siteBarReducer from "./siteBar-reducer";
 
 let store = {
     _state: {
@@ -51,6 +50,8 @@ let store = {
         this._state.content = contentReducer (this._state.content, action)
         this._state.dialogs = messageReducer (this._state.dialogs, action)
         this._state.siteBar = siteBarReducer (this._state.siteBar, action)
+
+        this._callSubscriber(this._state)
     },
 
     subscribe(observer) {

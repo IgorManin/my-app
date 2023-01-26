@@ -5,7 +5,7 @@ import {addPostActionCreate, updatePostActionCreate} from '../../../redux/conten
 
 
 const Posts = (props) => {
-    console.log(newPostElement)
+
     let newPostElement = React.createRef()
 
     let addPost = () => {
