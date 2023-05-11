@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/header/header.js';
 import Nav from './components/nav/nav'
 import Content from './components/content/content'
-import Dialogs from "./components/dialogs/Dialogs";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/setting/Setting";
